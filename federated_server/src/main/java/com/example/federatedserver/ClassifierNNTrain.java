@@ -66,7 +66,6 @@ public class ClassifierNNTrain {
 
         boolean saveUpdate = true;
 
-//        File locationToSave = new File("res/model/trained_har_nn.zip");
         File locationToSave = new File("D:/znhap/trained_nn.zip");
 
         ModelSerializer.writeModel(model, locationToSave, saveUpdate);

@@ -18,16 +18,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class Controller {
-    @PostMapping
-    public String addModel(@RequestBody String modelname) throws Exception {
-        return "Added successfully: " + modelname;
-    }
 
     @PostMapping("/uploadmodel")
     public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
         // Save file to disk
-//        file.transferTo(new File("D:/znhap/file.zip"));
-
         file.transferTo(new File(System.getProperty("user.dir") + "/src/main/resources/model/clientmodel/" + System.currentTimeMillis() + "_file.zip"));
         return "File uploaded successfully";
     }
@@ -35,7 +29,6 @@ public class Controller {
     @GetMapping("/getmodel")
     public ResponseEntity<FileSystemResource> downloadZipFile() {
         // Specify the path to the zip file
-//        String filePath = System.getProperty("user.dir") + "/src/main/resources/model/trained_har_nn.zip";
         String filePath = "src/main/resources/model/trained_nn.zip";
         File file = new File(filePath);
 
@@ -55,7 +48,6 @@ public class Controller {
 
     @GetMapping("/getfolderpath")
     public String getFolderPath() {
-//        System.out.println(System.getProperty("user.dir"));
         File directory = new File(System.getProperty("user.dir"));
 
         List<File> resultList = new ArrayList<File>();
