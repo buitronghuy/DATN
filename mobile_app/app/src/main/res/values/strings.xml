@@ -2,14 +2,6 @@
     <string name="app_name">FocusOn</string>
     <string name="butten_label">Label</string>
     <string name="butten_train">Train Model</string>
-    <string-array name="list_labels">
-        <item>Jogging</item>
-        <item>Walking</item>
-        <item>Upstairs</item>
-        <item>Downstairs</item>
-        <item>Sitting</item>
-        <item>Standing</item>
-    </string-array>
     <string-array name="list_labels_status">
         <item>Buồn ngủ</item>
         <item>Tỉnh táo</item>

@@ -66,7 +66,6 @@ public class SleepActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-//        stopPlayer();
         super.onPause();
     }
 
@@ -84,15 +83,4 @@ public class SleepActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
-
-
-//    private void stopPlayer() {
-//        isPlaying = false;
-//        play.setImageResource(R.drawable.baseline_play_circle_24);
-//        if (player != null) {
-//            player.release();
-//            player = null;
-////            Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 }

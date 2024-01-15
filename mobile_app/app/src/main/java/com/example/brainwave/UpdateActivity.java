@@ -165,12 +165,9 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
             super.onProgressUpdate(values);
         }
 
-        //This block executes in UI when background thread finishes
-        //This is where we update the UI with our classification results
         @Override
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
-
             //Hide the progress bar now that we are finished
             ProgressBar bar = (ProgressBar) findViewById(R.id.progressBar);
             bar.setVisibility(View.INVISIBLE);
@@ -184,7 +181,6 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            TextView textView = findViewById(R.id.textView);
             String content = "Loading model...";
             TextView textView = findViewById(R.id.textView);
             textView.setText(content);
@@ -203,7 +199,7 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = new BufferedInputStream(connection.getInputStream());
-                    FileOutputStream outputStream = new FileOutputStream(pathFile); // Replace with the path where you want to save the zip file
+                    FileOutputStream outputStream = new FileOutputStream(pathFile);
 
                     byte[] buffer = new byte[1024];
                     int bytesRead;
@@ -217,12 +213,7 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
                     String content = "Zip file downloaded successfully.";
                     System.out.println(content);
                     isLoaded = true;
-//                    TextView textView = findViewById(R.id.textView);
-//                    textView.setText(content);
                 } else {
-//                    String content = "Failed to download zip file.";
-//                    TextView textView = findViewById(R.id.textView);
-//                    textView.setText(content);
                     System.out.println("Failed to download zip file. Response code: " + responseCode);
                 }
 
@@ -247,9 +238,6 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
                 TextView textView = findViewById(R.id.textView);
                 textView.setText(content);
             }
-//            TextView textView = findViewById(R.id.textView);
-//            textView.setText(getString(R.string.model_loaded));
-//            TrainModel.isTransferred = false;
             isLoading = false;
             isLoaded = false;
         }
@@ -302,18 +290,12 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
 
                 int responseCode = conn.getResponseCode();
 
-                // Handle the response here
-                // You can check the response status code and read the response content
+                // Handle the response
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     String content = "Send file successfully";
-//                    TextView textView = findViewById(R.id.textView);
-//                    textView.setText(content);
                     System.out.println(content);
                     isSended = true;
                 } else {
-//                    String content = "Failed to send file!";
-//                    TextView textView = findViewById(R.id.textView);
-//                    textView.setText(content);
                     System.out.println("Failed to send file. Response code: " + responseCode);
                 }
 
@@ -321,17 +303,11 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
                 dos.flush();
                 dos.close();
             } catch (IOException e) {
-//                String content = "Failed to send file!";
-//                TextView textView = findViewById(R.id.textView);
-//                textView.setText(content);
-//                System.out.println(content);
                 e.printStackTrace();
             }
             return 0;
         }
 
-        //This block executes in UI when background thread finishes
-        //This is where we update the UI with our classification results
         @Override
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
@@ -344,10 +320,6 @@ public class UpdateActivity extends AppCompatActivity implements ActivityCompat.
                 TextView textView = findViewById(R.id.textView);
                 textView.setText(content);
             }
-            //Update the UI with output
-//            TextView textView = findViewById(R.id.textView);
-////            textView.setText(String.format("You are %s", LocalDataSet.statues[result]));
-//            textView.setText(R.string.train_finish);
             isLoading = false;
             isSended = false;
         }

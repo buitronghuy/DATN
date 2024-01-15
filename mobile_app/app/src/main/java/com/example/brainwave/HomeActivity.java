@@ -49,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
         focusingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(HomeActivity.this, FocusingActivity.class);
                 Intent intent = new Intent(HomeActivity.this, AttentionActivity.class);
                 startActivity(intent);
             }
@@ -58,7 +57,6 @@ public class HomeActivity extends AppCompatActivity {
         relaxingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(HomeActivity.this, RelaxingActivity.class);
                 Intent intent = new Intent(HomeActivity.this, SleepActivity.class);
                 startActivity(intent);
             }
@@ -68,7 +66,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ModelsActivity.class);
-//                Intent intent = new Intent(HomeActivity.this, DraftModelActivity.class);
                 startActivity(intent);
             }
         });

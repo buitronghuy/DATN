@@ -78,7 +78,6 @@ public class ModelsActivity extends AppCompatActivity implements ActivityCompat.
         }
     }
 
-    // training related
     private static boolean isTraining = false;
 
     private static final int NO_ERROR = 0;
@@ -104,12 +103,6 @@ public class ModelsActivity extends AppCompatActivity implements ActivityCompat.
                 if (isTraining) {
                     return;
                 }
-//                if (TrainModel.model == null) {
-//                    // model is not loaded yet
-//                    TextView textView = findViewById(R.id.textView);
-//                    textView.setText(R.string.warning_load_model);
-//                    return;
-//                }
 
                 isTraining = true;
                 trainingError = UNKNOWN_ERROR;
@@ -161,8 +154,6 @@ public class ModelsActivity extends AppCompatActivity implements ActivityCompat.
             super.onProgressUpdate(values);
         }
 
-        //This block executes in UI when background thread finishes
-        //This is where we update the UI with our classification results
         @Override
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
@@ -187,14 +178,13 @@ public class ModelsActivity extends AppCompatActivity implements ActivityCompat.
 
         @Override
         protected Integer doInBackground(Void... params) {
-            // run training process here
+            // run training process
             try {
                 // load model first
                 File pathFile = new File(getExternalFilesDir(TrainModel.modelDir), TrainModel.fileModelName);
 
                 TrainModel.model = ModelSerializer.restoreMultiLayerNetwork(
                         pathFile, false);
-//                File trainrecords = new File(TrainModel.dir, "WISDM_ar_train_indi_small.csv");
                 if (TrainModel.getlocateToSaveDataSet(ModelsActivity.this).length() == 0){
                     // nothing to train
                     trainingError = DATASET_ERROR;
@@ -214,8 +204,6 @@ public class ModelsActivity extends AppCompatActivity implements ActivityCompat.
             return 0;
         }
 
-        //This block executes in UI when background thread finishes
-        //This is where we update the UI with our classification results
         @Override
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);

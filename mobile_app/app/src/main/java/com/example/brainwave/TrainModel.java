@@ -36,8 +36,6 @@ public class TrainModel {
     public static final String modelDir = "model";
     public static final String fileModelName = "trained_nn.zip";
 
-//    public static final File locateToSaveDataSet = new File(dir, "labelled_dataset.csv");
-
     public static File getlocateToSaveDataSet(@NonNull Context context) {
         File myDataSetFile = new File(context.getExternalFilesDir("data"), "labelled_dataset.txt");
         return myDataSetFile;

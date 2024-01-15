@@ -26,21 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * This activity demonstrates how to use the constructor:
- * public TgStreamReader(BluetoothAdapter ba, TgStreamHandler tgStreamHandler)
- * and related functions:
- * (1) Make sure that the device supports Bluetooth and Bluetooth is on
- * (2) setGetDataTimeOutTime
- * (3) startLog
- * (4) Using connect() and start() to replace connectAndStart()
- * (5) isBTConnected
- * (6) Use close() to release resource
- * (7) Demo of TgStreamHandler
- * (8) Demo of MindDataType
- * (9) Demo of recording raw data
- *
- */
 public class BluetoothAdapterActivity extends AppCompatActivity {
 
     private static final String TAG = BluetoothAdapterActivity.class.getSimpleName();
@@ -62,7 +47,7 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
         setUpDrawWaveView();
 
         try {
-            // (1) Make sure that the device supports Bluetooth and Bluetooth is on
+            // Make sure that the device supports Bluetooth and Bluetooth is on
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
                 Toast.makeText(
@@ -78,11 +63,8 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
             return;
         }
 
-        // Example of constructor public TgStreamReader(BluetoothAdapter ba, TgStreamHandler tgStreamHandler)
         tgStreamReader = new TgStreamReader(mBluetoothAdapter,callback);
-        // (2) Demo of setGetDataTimeOutTime, the default time is 5s, please call it before connect() of connectAndStart()
         tgStreamReader.setGetDataTimeOutTime(6);
-        // (3) Demo of startLog, you will get more sdk log by logcat if you call this function
         tgStreamReader.startLog();
     }
 
@@ -135,18 +117,13 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
                 badPacketCount = 0;
 		        showToast("Connecting...", Toast.LENGTH_SHORT);
 
-                // (5) demo of isBTConnected
                 if(tgStreamReader != null && tgStreamReader.isBTConnected()){
 
                     // Prepare for connecting
                     tgStreamReader.stop();
                     tgStreamReader.close();
                 }
-
-                // (4) Demo of  using connect() and start() to replace connectAndStart(),
-                // please call start() when the state is changed to STATE_CONNECTED
                 tgStreamReader.connect();
-//				tgStreamReader.connectAndStart();
             }
         });
 
@@ -205,7 +182,6 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
         }
     }
 
-    // (7) demo of TgStreamHandler
     private TgStreamHandler callback = new TgStreamHandler() {
 
         @Override
@@ -214,48 +190,28 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
             Log.d(TAG, "connectionStates change to: " + connectionStates);
             switch (connectionStates) {
                 case ConnectionStates.STATE_CONNECTING:
-                    // Do something when connecting
                     break;
                 case ConnectionStates.STATE_CONNECTED:
-                    // Do something when connected
                     tgStreamReader.start();
                     showToast("Connected", Toast.LENGTH_SHORT);
                     break;
                 case ConnectionStates.STATE_WORKING:
-                    // Do something when working
-
-                    //(9) demo of recording raw data , stop() will call stopRecordRawData,
-                    //or you can add a button to control it.
-                    //You can change the save path by calling setRecordStreamFilePath(String filePath) before startRecordRawData
                     tgStreamReader.startRecordRawData();
 
                     break;
                 case ConnectionStates.STATE_GET_DATA_TIME_OUT:
-                    // Do something when getting data timeout
-
-                    //(9) demo of recording raw data, exception handling
                     tgStreamReader.stopRecordRawData();
 
                     showToast("Get data time out!", Toast.LENGTH_SHORT);
                     break;
                 case ConnectionStates.STATE_STOPPED:
-                    // Do something when stopped
-                    // We have to call tgStreamReader.stop() and tgStreamReader.close() much more than
-                    // tgStreamReader.connectAndstart(), because we have to prepare for that.
-
                     break;
                 case ConnectionStates.STATE_DISCONNECTED:
-                    // Do something when disconnected
                     break;
                 case ConnectionStates.STATE_ERROR:
-                    // Do something when you get error message
                     break;
                 case ConnectionStates.STATE_FAILED:
                     showToast("Connection failed!\nPlease check your bluetooth device", Toast.LENGTH_SHORT);
-                    // Do something when you get failed message
-                    // It always happens when open the BluetoothSocket error or timeout
-                    // Maybe the device is not working normal.
-                    // Maybe you have to try again
                     break;
             }
             Message msg = LinkDetectedHandler.obtainMessage();
@@ -266,14 +222,14 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
 
         @Override
         public void onRecordFail(int flag) {
-            // You can handle the record error message here
+            // handle the record error message
             Log.e(TAG,"onRecordFail: " +flag);
 
         }
 
         @Override
         public void onChecksumFail(byte[] payload, int length, int checksum) {
-            // You can handle the bad packets here.
+            // handle the bad packets.
             badPacketCount ++;
             Message msg = LinkDetectedHandler.obtainMessage();
             msg.what = MSG_UPDATE_BAD_PACKET;
@@ -284,9 +240,7 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
 
         @Override
         public void onDataReceived(int datatype, int data, Object obj) {
-            // You can handle the received data here
-            // You can feed the raw data to algo sdk here if necessary.
-
+            // handle the received data
             Message msg = LinkDetectedHandler.obtainMessage();
             msg.what = datatype;
             msg.arg1 = data;
@@ -307,7 +261,6 @@ public class BluetoothAdapterActivity extends AppCompatActivity {
 
         @Override
         public void handleMessage(Message msg) {
-            // (8) demo of MindDataType
             switch (msg.what) {
                 case MindDataType.CODE_RAW:
                     updateWaveView(msg.arg1);
