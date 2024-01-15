@@ -36,22 +36,10 @@
             android:name=".ModelsActivity"
             android:exported="false" />
         <activity
-            android:name=".DraftModelActivity"
-            android:exported="false" />
-        <activity
             android:name=".LabeledActivity"
             android:exported="false" />
         <activity
             android:name=".UpdateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RelaxingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MonitoringActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FocusingActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
@@ -62,26 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".FileDemoActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".BluetoothDeviceActivity"
-            android:screenOrientation="landscape" />
         <activity
             android:name=".BluetoothAdapterActivity"
             android:screenOrientation="landscape" />

@@ -13,9 +13,6 @@ import androidx.annotation.Nullable;
 public class AlertService extends IntentService {
 
     public static MediaPlayer player;
-    public static MediaPlayer musicPlayer;
-    private static int musicCount = 0;
-    private static final int MAX_MUSIC_COUNT = 5;
 
     public AlertService() {
         super("AlertService");
@@ -25,7 +22,6 @@ public class AlertService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Bundle b = intent.getBundleExtra("Alert");
         boolean status = b.getBoolean("Status");
-        musicCount = 0;
         if (status) {
             playHorn();
             Log.d("TAG", "Turn on alert! ");
@@ -36,9 +32,7 @@ public class AlertService extends IntentService {
 
     public void playHorn(){
         stopPlayer();
-//        if(player == null) {
         player = MediaPlayer.create( this, R.raw.test_warninghorn_beta_isochronic_13hz_6min);
-//        player = MediaPlayer.create( this, R.raw.warning_horn);
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -47,24 +41,6 @@ public class AlertService extends IntentService {
             }
         });
         player.start();
-    }
-
-    public void playMusic(){
-        stopPlayer();
-        musicPlayer = MediaPlayer.create(this, R.raw.betawaves14hz);
-//        musicPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                if (musicCount < MAX_MUSIC_COUNT) {
-//                    musicCount++;
-//                    musicPlayer.start();
-//                } else {
-//                    musicCount = 0;
-//                    stopPlayer();
-//                }
-//            }
-//        });
-        musicPlayer.start();
     }
 
     private void stopPlayer() {

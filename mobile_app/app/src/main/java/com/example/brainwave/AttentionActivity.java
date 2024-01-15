@@ -99,11 +99,8 @@ public class AttentionActivity extends AppCompatActivity {
             return;
         }
 
-        // Example of constructor public TgStreamReader(BluetoothAdapter ba, TgStreamHandler tgStreamHandler)
         tgStreamReader = new TgStreamReader(mBluetoothAdapter,callback);
-        // (2) Demo of setGetDataTimeOutTime, the default time is 5s, please call it before connect() of connectAndStart()
         tgStreamReader.setGetDataTimeOutTime(6);
-        // (3) Demo of startLog, you will get more sdk log by logcat if you call this function
         tgStreamReader.startLog();
     }
 
@@ -145,29 +142,9 @@ public class AttentionActivity extends AppCompatActivity {
                     tgStreamReader.close();
                 }
 
-                // (4) Demo of  using connect() and start() to replace connectAndStart(),
-                // please call start() when the state is changed to STATE_CONNECTED
                 tgStreamReader.connect();
 //				tgStreamReader.connectAndStart();
 
-//                tv_attention.setText("Connecting...");
-
-                // (3) How to destroy a TgStreamReader object
-//                if(tgStreamReader != null){
-//                    tgStreamReader.stop();
-//                    tgStreamReader.close();
-//                    tgStreamReader = null;
-//                }
-//                InputStream is = getApplicationContext().getResources().openRawResource(R.raw.tgam_capture);
-//                // Example of TgStreamReader(InputStream is, TgStreamHandler tgStreamHandler)
-//                tgStreamReader = new TgStreamReader(is, callback);
-//
-//                // (1) Example of setReadFileBlockSize(int), the default block size is 8, call it before connectAndStart() or connect()
-//                tgStreamReader.setReadFileBlockSize(16);
-//                // (2) Example of setReadFileDelay(int), the default delay time is 2ms, call it before connectAndStart() or connect()
-//                tgStreamReader.setReadFileDelay(2);
-//
-//                tgStreamReader.connectAndStart();
             }
 
         });
@@ -177,8 +154,6 @@ public class AttentionActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 stop();
-//                tgStreamReader.stop();
-//                tgStreamReader.close();
             }
 
         });
@@ -199,7 +174,6 @@ public class AttentionActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        //(6) use close() to release resource
         stop();
         super.onDestroy();
     }
@@ -229,71 +203,30 @@ public class AttentionActivity extends AppCompatActivity {
             Log.d(TAG, "connectionStates change to: " + connectionStates);
             switch (connectionStates) {
                 case ConnectionStates.STATE_CONNECTING:
-                    // Do something when connecting
                     break;
                 case ConnectionStates.STATE_CONNECTED:
-                    // Do something when connected
                     tgStreamReader.start();
                     showToast("Connected", Toast.LENGTH_SHORT);
                     break;
                 case ConnectionStates.STATE_WORKING:
-                    // Do something when working
-
-                    //(9) demo of recording raw data , stop() will call stopRecordRawData,
-                    //or you can add a button to control it.
-                    //You can change the save path by calling setRecordStreamFilePath(String filePath) before startRecordRawData
                     tgStreamReader.startRecordRawData();
 
                     break;
                 case ConnectionStates.STATE_GET_DATA_TIME_OUT:
-                    // Do something when getting data timeout
-
-                    //(9) demo of recording raw data, exception handling
                     tgStreamReader.stopRecordRawData();
 
                     showToast("Get data time out!", Toast.LENGTH_SHORT);
                     break;
                 case ConnectionStates.STATE_STOPPED:
-                    // Do something when stopped
-                    // We have to call tgStreamReader.stop() and tgStreamReader.close() much more than
-                    // tgStreamReader.connectAndstart(), because we have to prepare for that.
-
                     break;
                 case ConnectionStates.STATE_DISCONNECTED:
-                    // Do something when disconnected
                     break;
                 case ConnectionStates.STATE_ERROR:
-                    // Do something when you get error message
                     break;
                 case ConnectionStates.STATE_FAILED:
                     setFailState();
                     showToast("Connection failed!\nPlease check your bluetooth device", Toast.LENGTH_SHORT);
-                    // Do something when you get failed message
-                    // It always happens when open the BluetoothSocket error or timeout
-                    // Maybe the device is not working normal.
-                    // Maybe you have to try again
                     break;
-
-//                case ConnectionStates.STATE_CONNECTED:
-//                    //sensor.start();
-//                    showToast("Connected", Toast.LENGTH_SHORT);
-//                    break;
-//                case ConnectionStates.STATE_WORKING:
-//
-//                    break;
-//                case ConnectionStates.STATE_GET_DATA_TIME_OUT:
-//                    //  get data time out
-//                    break;
-//                case ConnectionStates.STATE_COMPLETE:
-//                    //read file complete
-//                    showToast("STATE_COMPLETE",Toast.LENGTH_SHORT);
-//                    break;
-//                case ConnectionStates.STATE_STOPPED:
-//                    break;
-//                case ConnectionStates.STATE_DISCONNECTED:
-//                    break;
-//                case ConnectionStates.STATE_ERROR:
-//                    break;
             }
             Message msg = LinkDetectedHandler.obtainMessage();
             msg.what = MSG_UPDATE_STATE;
@@ -303,14 +236,14 @@ public class AttentionActivity extends AppCompatActivity {
 
         @Override
         public void onRecordFail(int flag) {
-            // You can handle the record error message here
+            // handle the record error message
             Log.e(TAG,"onRecordFail: " +flag);
 
         }
 
         @Override
         public void onChecksumFail(byte[] payload, int length, int checksum) {
-            // You can handle the bad packets here.
+            // handle the bad packets.
             badPacketCount ++;
             Message msg = LinkDetectedHandler.obtainMessage();
             msg.what = MSG_UPDATE_BAD_PACKET;
@@ -321,9 +254,7 @@ public class AttentionActivity extends AppCompatActivity {
 
         @Override
         public void onDataReceived(int datatype, int data, Object obj) {
-            // You can handle the received data here
-            // You can feed the raw data to algo sdk here if necessary.
-
+            // handle the received data
             Message msg = LinkDetectedHandler.obtainMessage();
             msg.what = datatype;
             msg.arg1 = data;
@@ -349,11 +280,9 @@ public class AttentionActivity extends AppCompatActivity {
                     break;
                 case MindDataType.CODE_MEDITATION:
                     Log.d(TAG, "HeadDataType.CODE_MEDITATION " + msg.arg1);
-//                    tv_meditation.setText("" +msg.arg1 );
                     break;
                 case MindDataType.CODE_ATTENTION:
                     Log.d(TAG, "CODE_ATTENTION " + msg.arg1);
-//                    tv_attention.setText("" +msg.arg1 );
                     break;
                 case MindDataType.CODE_EEGPOWER:
                     if (isPoorSignal == true) {
@@ -370,29 +299,17 @@ public class AttentionActivity extends AppCompatActivity {
                         }
                         dataCollected[numbeOfSamples] = power;
                         numbeOfSamples++;
-//                        writeEEGDataToFile(power);
-//                        tv_delta.setText("" +power.delta);
-//                        tv_theta.setText("" +power.theta);
-//                        tv_lowalpha.setText("" +power.lowAlpha);
-//                        tv_highalpha.setText("" +power.highAlpha);
-//                        tv_lowbeta.setText("" +power.lowBeta);
-//                        tv_highbeta.setText("" +power.highBeta);
-//                        tv_lowgamma.setText("" +power.lowGamma);
-//                        tv_middlegamma.setText("" +power.middleGamma);
                     }
                     break;
                 case MindDataType.CODE_POOR_SIGNAL:
                     int poorSignal = msg.arg1;
                     Log.d(TAG, "poorSignal:" + poorSignal);
-//                    writeDataToFile("poorSignal", msg.arg1);
                     if (poorSignal > 0) {
                         isPoorSignal = true;
                     }
-//                    tv_ps.setText(""+msg.arg1);
 
                     break;
                 case MSG_UPDATE_BAD_PACKET:
-//                    tv_badpacket.setText("" + msg.arg1);
 
                     break;
                 default:
@@ -453,7 +370,6 @@ public class AttentionActivity extends AppCompatActivity {
             INDArray predicted = TrainModel.model.output(sample_to_infer, false);
             INDArray index = predicted.argMax();
             int[] pl = index.toIntVector();
-//            int[] pl = {(sample[0]>1000000)?0:1,1};
             currentStatus = pl[0];
             if(pl[0] == 0) {
                 alertService();
@@ -469,13 +385,11 @@ public class AttentionActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
 
             String predicted_label = "Bạn đang " + LocalDataSet.statues[currentStatus].toLowerCase() + ".";
-//            TextView textView = findViewById(R.id.tv_attention_value);
             tv_attention_value.setText(predicted_label);
         }
     }
 
     public void alertService() {
-//        Intent intent = new Intent(AttentionActivity.this, AlertService.class);
         Bundle b = new Bundle();
         b.putBoolean("Status", true);
         intent.putExtra("Alert", b);
