@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SleepActivity">
+
+    <TextView
+        android:id="@+id/modelsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Thư giãn"
+        android:textColor="@color/lavender"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/clothImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/modelsTitle"
+        android:layout_marginTop="18dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/monitor" />
+
+    <TextView
+        android:id="@+id/tv_sleep_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/clothImage"
+        android:layout_marginTop="20dp"
+        android:text="Nhạc delta giúp giấc ngủ sâu hơn"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:id="@+id/play"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/baseline_play_circle_24"
+        android:layout_below="@+id/tv_sleep_label" />
+
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	implementation "org.deeplearning4j:deeplearning4j-core:1.0.0-beta4"
+	implementation "org.nd4j:nd4j-native-platform:1.0.0-beta4"
+	implementation ("org.slf4j:slf4j-simple:2.0.5")
+	implementation "org.slf4j:slf4j-api:2.0.5"
+
+	implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
+//	implementation("org.apache.zookeeper:zookeeper:3.4.5") {
+//		exclude group: 'ch.qos.logback', module: 'logback-classic'
+//	}
+}
+
+
+//System.setProperty("javax.net.ssl.trustStore", "/etc/ssl/certs/java/cacerts")
+//System.setProperty("javax.net.ssl.trustStorePassword", "password")
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

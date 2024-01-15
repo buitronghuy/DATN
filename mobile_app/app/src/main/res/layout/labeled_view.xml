@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LabeledActivity">
+
+    <TextView
+        android:id="@+id/clothTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Gán nhãn cho dữ liệu"
+        android:textColor="@color/lavender"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/clothImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/clothTitle"
+        android:layout_marginTop="18dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/folder" />
+
+    <TextView
+        android:id="@+id/tv_attention_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:text="Vui lòng chọn trạng thái hiện tại:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_attention"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="390dp"-->
+<!--        android:text="&#45;&#45;"-->
+<!--        android:textAppearance="?android:attr/textAppearanceLarge"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="20dp" />-->
+
+    <Spinner
+        android:id="@+id/label_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_marginTop="390dp"
+        android:layout_centerHorizontal="true"
+        android:entries="@array/list_labels_status"
+        android:gravity="center|end"
+        android:spinnerMode="dropdown"
+        android:visibility="visible"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_labeled_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="470dp"
+        android:layout_centerHorizontal="true"
+        android:text="Start"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+    <Button
+        android:id="@+id/btn_labeled_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="530dp"
+        android:layout_centerHorizontal="true"
+        android:text="Stop"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_labeled_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="595dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+</RelativeLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".MainActivity">-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/spinner"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="37dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:entries="@array/list_labels_status"-->
+<!--        android:gravity="center|end"-->
+<!--        android:spinnerMode="dropdown"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_label"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_label"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="37dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="@string/butten_label"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_stop"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/spinner"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="?android:attr/progressBarStyle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_label" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/progressBar" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_stop"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="37dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:text="Stop"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button_label"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

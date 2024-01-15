@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FocusingActivity">
+
+    <TextView
+        android:id="@+id/clothTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Theo dõi độ tập trung"
+        android:textColor="@color/lavender"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/clothImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/clothTitle"
+        android:layout_marginTop="18dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/focus" />
+
+    <TextView
+        android:id="@+id/tv_attention_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:text="Attention"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="390dp"
+        android:text="--"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="470dp"
+        android:layout_centerHorizontal="true"
+        android:text="Start"
+        android:textColor="#ffffffff"
+        android:textSize="16dp" />
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="520dp"
+        android:layout_centerHorizontal="true"
+        android:text="Stop"
+        android:textColor="#ffffffff"
+        android:textSize="16dp" />
+
+</RelativeLayout>

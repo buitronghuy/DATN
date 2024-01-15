@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LabeledActivity">
+
+    <TextView
+        android:id="@+id/AttentionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:gravity="center|center_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Giám sát độ tỉnh táo"
+        android:textColor="@color/lavender"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/attentionImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/AttentionTitle"
+        android:layout_marginTop="18dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/focus" />
+
+    <TextView
+        android:id="@+id/tv_attention_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/attentionImage"
+        android:layout_marginTop="18dp"
+        android:text="Theo dõi mức độ tỉnh táo của bạn"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tv_attention_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_attention_label"
+        android:layout_marginTop="25dp"
+        android:text="--"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+<!--    <Spinner-->
+<!--        android:id="@+id/label_spinner"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="37dp"-->
+<!--        android:layout_marginTop="390dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:entries="@array/list_labels_status"-->
+<!--        android:gravity="center|end"-->
+<!--        android:spinnerMode="dropdown"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+    <Button
+        android:id="@+id/btn_attention_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="470dp"
+        android:layout_centerHorizontal="true"
+        android:text="Start"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+    <Button
+        android:id="@+id/btn_attention_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="530dp"
+        android:layout_centerHorizontal="true"
+        android:text="Stop"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_attention_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="595dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+</RelativeLayout>
+

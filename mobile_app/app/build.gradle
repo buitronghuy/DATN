@@ -1,0 +1,94 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.brainwave'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.brainwave"
+        minSdk 27
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude 'META-INF/native-image/**'
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation files('libs/libStreamSDK.jar')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation (group: 'org.deeplearning4j', name: 'deeplearning4j-core', version: '1.0.0-beta4') {
+        exclude group: 'org.bytedeco', module: 'opencv-platform'
+        exclude group: 'org.bytedeco', module: 'leptonica-platform'
+        exclude group: 'org.bytedeco', module: 'hdf5-platform'
+        exclude group: 'org.nd4j', module: 'nd4j-base64'
+    }
+    implementation group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta4'
+    implementation group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta4', classifier: "android-arm"
+    implementation group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta4', classifier: "android-arm64"
+    implementation group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta4', classifier: "android-x86"
+    implementation group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta4', classifier: "android-x86_64"
+    implementation group: 'org.bytedeco', name: 'openblas', version: '0.3.19-1.5.7'
+    implementation group: 'org.bytedeco', name: 'openblas', version: '0.3.19-1.5.7', classifier: "android-arm"
+    implementation group: 'org.bytedeco', name: 'openblas', version: '0.3.19-1.5.7', classifier: "android-arm64"
+    implementation group: 'org.bytedeco', name: 'openblas', version: '0.3.19-1.5.7', classifier: "android-x86"
+    implementation group: 'org.bytedeco', name: 'openblas', version: '0.3.19-1.5.7', classifier: "android-x86_64"
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.5-1.5.7'
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.5-1.5.7', classifier: "android-arm"
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.5-1.5.7', classifier: "android-arm64"
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.5-1.5.7', classifier: "android-x86"
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.5-1.5.7', classifier: "android-x86_64"
+    implementation group: 'org.bytedeco', name: 'leptonica', version: '1.82.0-1.5.7'
+    implementation group: 'org.bytedeco', name: 'leptonica', version: '1.82.0-1.5.7', classifier: "android-arm"
+    implementation group: 'org.bytedeco', name: 'leptonica', version: '1.82.0-1.5.7', classifier: "android-arm64"
+    implementation group: 'org.bytedeco', name: 'leptonica', version: '1.82.0-1.5.7', classifier: "android-x86"
+    implementation group: 'org.bytedeco', name: 'leptonica', version: '1.82.0-1.5.7', classifier: "android-x86_64"
+
+//    implementation 'org.apache.httpcomponents:httpcore:4.4.15'
+//    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+//    implementation 'net.sourceforge.htmlunit:htmlunit-android:2.63.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+    implementation 'com.google.code.gson:gson:2.8.9'
+//    annotationProcessor 'org.projectlombok:lombok:1.16.16'
+
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
+    //This corrects for a junit version conflict.
+    configurations {
+        all {
+            resolutionStrategy{
+                force 'junit:junit:4.12'
+                force 'com.google.guava:guava:20.0'
+            }
+        }
+    }
+}
